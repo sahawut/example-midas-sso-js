@@ -2,6 +2,10 @@ window.addEventListener('load', function() {
   var lock = new Auth0Lock(AUTH0_CLIENT_ID, AUTH0_DOMAIN);
   var btn_login = document.getElementById('btn-login');
 
+  var href = window.location.href;
+  var baseUrl = href.split(CONTEXT)[0] + CONTEXT;
+  document.write('<base href="'+ baseUrl + '" />');
+
   if (btn_login) {
     btn_login.addEventListener('click', function() {
       lock.show();
