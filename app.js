@@ -56,6 +56,7 @@ window.addEventListener('load', function() {
     if (id_token) {
       var profile = JSON.parse(localStorage.getItem('profile'));
 
+      current_location.replace(CONTEXT, '');
       switch(current_location) {
         case "/":
           hide(document.getElementById('btn-login'));
