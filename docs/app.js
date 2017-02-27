@@ -85,7 +85,7 @@ window.addEventListener('load', function() {
       };
     } else { // user is not logged in.
       // Call logout just to be sure our local session is cleaned up.
-      if (CONTEXT != current_location) {
+      if (CONTEXT + '/' != current_location) {
         logout();
       }
     }
