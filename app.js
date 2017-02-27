@@ -3,7 +3,7 @@ window.addEventListener('load', function() {
   var btn_login = document.getElementById('btn-login');
 
   var href = window.location.href;
-  var base = document.createElement('base');
+  var base = document.createElement('BASE');
   base.href = href.split(CONTEXT)[0] + CONTEXT;
   document.getElementsByTagName('head')[0].appendChild(base);
 
