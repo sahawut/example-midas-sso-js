@@ -66,7 +66,7 @@ window.addEventListener('load', function() {
           break;
         case "/user.html":
           if (true != isUser(profile)) {
-            window.location.href = "/";
+            window.location.href = CONTEXT;
           } else {
             show(document.querySelector('.container'));
             show(document.getElementById('btn-logout'));
@@ -75,7 +75,7 @@ window.addEventListener('load', function() {
           break;
         case "/admin.html":
           if (true != isAdmin(profile)) {
-            window.location.href = "/";
+            window.location.href = CONTEXT;
           } else {
             show(document.querySelector('.container'));
             show(document.getElementById('btn-logout'));
@@ -85,7 +85,7 @@ window.addEventListener('load', function() {
       };
     } else { // user is not logged in.
       // Call logout just to be sure our local session is cleaned up.
-      if ("/" != current_location) {
+      if (CONTEXT != current_location) {
         logout();
       }
     }
@@ -94,7 +94,7 @@ window.addEventListener('load', function() {
   var logout = function() {
     localStorage.removeItem('id_token');
     localStorage.removeItem('profile');
-    window.location.href = "/";
+    window.location.href = CONTEXT;
   };
 
   var hide = function(element) {
