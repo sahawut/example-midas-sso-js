@@ -62,7 +62,7 @@ window.addEventListener('load', function() {
         case "/":
           hide(document.getElementById('btn-login'));
           show(document.getElementById('btn-logout'));
-          var baseUrl = window.location.href.split(CONTEXT) + CONTEXT;
+          var baseUrl = window.location.href.split(CONTEXT)[0] + CONTEXT;
           if (isAdmin(profile)){
             var adminBtn = document.getElementById('btn-go-admin');
             adminBtn.href = baseUrl + ADMIN_ROUTE;
