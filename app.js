@@ -1,12 +1,9 @@
 window.addEventListener('load', function() {
   var lock = new Auth0Lock(AUTH0_CLIENT_ID, AUTH0_DOMAIN);
+  var USER_ROUTE = "/user.html";
+  var ADMIN_ROUTE = "/admin.html";
+
   var btn_login = document.getElementById('btn-login');
-
-  var href = window.location.href;
-  var base = document.createElement('BASE');
-  base.href = href.split(CONTEXT)[0] + CONTEXT;
-  document.getElementsByTagName('head')[0].appendChild(base);
-
   if (btn_login) {
     btn_login.addEventListener('click', function() {
       lock.show();
@@ -57,19 +54,27 @@ window.addEventListener('load', function() {
 
   var route = function() {
     var id_token = localStorage.getItem('id_token');
-    var current_location = window.location.pathname;
+    var locationPath = window.location.pathname;
     if (id_token) {
       var profile = JSON.parse(localStorage.getItem('profile'));
-
-      var route = current_location.replace(CONTEXT, '');
+      var route = locationPath.replace(CONTEXT, '');
       switch(route) {
         case "/":
           hide(document.getElementById('btn-login'));
           show(document.getElementById('btn-logout'));
-          if (isAdmin(profile)) show(document.getElementById('btn-go-admin'));
-          if (isUser(profile)) show(document.getElementById('btn-go-user'));
+          var baseUrl = window.location.href.split(CONTEXT) + CONTEXT;
+          if (isAdmin(profile)){
+            var adminBtn = document.getElementById('btn-go-admin');
+            adminBtn.href = baseUrl + ADMIN_ROUTE;
+            show(adminBtn);
+          }
+          if (isUser(profile)){
+              var uerBtn = document.getElementById('btn-go-user');
+              uerBtn.href = baseUrl + USER_ROUTE;
+              show(document.getElementById('btn-go-user'));
+          }
           break;
-        case "/user.html":
+        case USER_ROUTE:
           if (true != isUser(profile)) {
             window.location.href = CONTEXT;
           } else {
@@ -78,7 +83,7 @@ window.addEventListener('load', function() {
             document.getElementById('nickname').textContent = profile.nickname;
           }
           break;
-        case "/admin.html":
+        case ADMIN_ROUTE:
           if (true != isAdmin(profile)) {
             window.location.href = CONTEXT;
           } else {
@@ -90,7 +95,7 @@ window.addEventListener('load', function() {
       };
     } else { // user is not logged in.
       // Call logout just to be sure our local session is cleaned up.
-      if (CONTEXT + '/' != current_location) {
+      if (CONTEXT + '/' != locationPath) {
         logout();
       }
     }
