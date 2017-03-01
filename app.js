@@ -1,7 +1,7 @@
 window.addEventListener('load', function() {
   var lock = new Auth0Lock(AUTH0_CLIENT_ID, AUTH0_DOMAIN);
 
-  addClickListener(document.getElementById('btn-login'), lock.show);
+  addClickListener(document.getElementById('btn-login'), function(){lock.show();});
   addClickListener(document.getElementById('btn-logout'), logout);
   lock.on("authenticated", onAuthenticated);
   route();
@@ -29,6 +29,7 @@ window.addEventListener('load', function() {
       var profile = JSON.parse(localStorage.getItem('profile'));
       var route = locationPath.replace(CONTEXT, '');
       switch(route) {
+		case "":
         case "/":
           hide(document.getElementById('btn-login'));
           show(document.getElementById('btn-logout'));
@@ -45,7 +46,7 @@ window.addEventListener('load', function() {
           }
           break;
         case USER_ROUTE:
-          if (true != isUser(profile)) {
+          if (true != hasRole(profile, 'ISG_USER')) {
             window.location.href = CONTEXT;
           } else {
             show(document.querySelector('.container'));
@@ -54,7 +55,7 @@ window.addEventListener('load', function() {
           }
           break;
         case ADMIN_ROUTE:
-          if (true != isAdmin(profile)) {
+          if (true != hasRole(profile, 'ISG_ADMIN')) {
             window.location.href = CONTEXT;
           } else {
             show(document.querySelector('.container'));
