@@ -14,7 +14,7 @@
   <script src="./app.js"></script>
 </head>
 <body>
-  <div class="container"  style="display: none;">
+  <div class="container" style="display: none;">
     <div id="login" class="row">
       <div class="col-md-12">
         <h2>Welcome <span id="nickname"></span></h2>
@@ -22,6 +22,11 @@
         <button type="button" id="btn-logout" class="btn btn-default">Logout</button>
         <a href="/admin.html" id="btn-go-admin" class="btn btn-default">Go to admin page</a>
         <a href="/user.html" id="btn-go-user" class="btn btn-default">Go to user page</a>
+      </div>
+      <div id="profile" class="profile-container col-md-12">
+        <div><img id="profile-picture"></div>
+        <h3><span id="profile-name"></span></h3>
+        <div><label>Roles:</label><ul id="profile-roles"></ul></div>
       </div>
     </div>
   </div>

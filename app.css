@@ -1,3 +1,7 @@
 #btn-logout, #btn-go-admin, #btn-go-user, .profile-container {
   display: none;
 }
+
+#profile-picture {
+  margin-top: 8px;
+}

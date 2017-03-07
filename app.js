@@ -67,9 +67,14 @@ window.addEventListener('load', function() {
         return new Auth0({
             domain: AUTH0_DOMAIN,
             clientID: AUTH0_CLIENT_ID,
-            callbackURL: 'http://localhost:3000' + CONTEXT + '/',
+            callbackURL: toAbsoluteUrl('/'),
             callbackOnLocationHash: true
         });
+    }
+
+    function toAbsoluteUrl(path) {
+        path = path || "";
+        return window.location.href.split(CONTEXT)[0] + CONTEXT + path;
     }
 
     function doesUserLogInLocally() {
@@ -100,9 +105,10 @@ window.addEventListener('load', function() {
             }
 
             function showLandingPageComponents() {
-                var baseUrl = window.location.href.split(CONTEXT)[0] + CONTEXT;
+                var baseUrl = toAbsoluteUrl();
                 hide(document.getElementById('btn-login'));
                 showCommonComponentsInAllPages();
+                showProfile(profile);
                 if (hasRole(profile, ROLE_ISG_ADMIN)) {
                     rewireAndShowButtonById('btn-go-admin', baseUrl + ROUTE_ADMIN);
                 }
@@ -137,6 +143,21 @@ window.addEventListener('load', function() {
                 show(button);
             }
         }
+    }
+
+    function showProfile(profile) {
+        var htmlNode,
+            i;
+
+        document.getElementById('profile-name').innerHTML = profile.name;
+        document.getElementById('profile-picture').src = profile.picture;
+
+        for(i = 0; i < profile.roles.length; i++) {
+            htmlNode = document.createElement("li");
+            htmlNode.innerHTML = profile.roles[i];
+            document.getElementById('profile-roles').appendChild(htmlNode);
+        }
+        show(document.getElementById("profile"));
     }
 
     function toAuthResultFromLocationHash() {
