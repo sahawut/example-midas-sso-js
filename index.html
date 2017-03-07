@@ -1,53 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Midas SSO Example</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
-	<link href="app.css" rel="stylesheet">
-	
-	<!-- Using Auth0 Lock Script -->
-	<script src="//cdn.auth0.com/js/lock/10.11/lock.min.js"></script>
-	
-	<!-- App-specific Scripts -->
-	<script src="helper.js" defer></script>
-	<script src="auth0-variables.js" defer></script>
-	<script src="routes.js" defer></script>
-	<script src="app.js" defer></script>
-</head>
+  <title>Auth0-VanillaJS</title>
+  <meta charset="utf-8">
+  <!-- Auth0 Lock script -->
+  <script src="//cdn.auth0.com/js/lock/10.3.0/lock.min.js"></script>
 
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="./app.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="./auth0-variables.js"></script>
+  <script src="./app.js"></script>
+</head>
 <body>
-	<div class="container-fluid">
-		<div id="header" style="clear: both;">
-			<h1>Welcome<span id="profile-nickname"> to the Example MIDAS SSO App!</span></h1>
-			
-			<div id="profile" style="display: none;">
-				<div><span id="profile-name" style="margin-left: auto; margin-right: auto;"></span></div>
-				<div><img id="profile-picture"></div>
-				<div><label>Roles:</label><ul id="profile-roles"></ul></div>
-			</div>
-			
-			<div>
-				<div id="menu-options">
-					<button type="button" id="btn-profile" class="btn btn-default">Go to profile page</button>
-					<a href="/admin.html" id="btn-admin" class="btn btn-default" target="view-frame">Go to admin page</a>
-					<a href="/user.html" id="btn-user" class="btn btn-default" target="view-frame">Go to user page</a>
-					<button type="button" id="btn-logout" class="btn btn-default">Logout</button>
-				</div>
-			</div>
-		</div>
-		
-		<div id="content" style="clear: both;">
-			<div>
-				<iframe id="view-frame" name="view-frame" src="login.html" style="border: none;" width="100%" height="600"></iframe>
-			</div>
-		</div>
-			
-		<footer style="clear: both;">
-			<h4>ISG, University of Pittsburgh ©2017. Licensed under Apache License Version 2.0</h4>
-		</footer>
-	</div>
+  <div class="container">
+    <div id="login" class="row">
+      <div class="col-md-12">
+        <h2>Welcome</h2>
+        <button type="button" id="btn-login" class="btn btn-primary">Login</button>
+        <button type="button" id="btn-logout" class="btn btn-default">Logout</button>
+        <a href="/admin.html" id="btn-go-admin" class="btn btn-default">Go to admin page</a>
+        <a href="/user.html" id="btn-go-user" class="btn btn-default">Go to user page</a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
