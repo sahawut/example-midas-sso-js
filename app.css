@@ -1,26 +1,7 @@
-body {
-	background-color: #EEEEEE;
+#btn-logout, #btn-go-admin, #btn-go-user, .profile-container {
+  display: none;
 }
 
-footer,
-#header {
-	clear: both;
-	background-color: #2565A4;
-	color: #FFFFFF;
-}
-
-#view-frame {
-	background-color: #FFFFFF;
-}
-
-#btn-profile,
-#btn-logout,
-#btn-admin,
-#btn-user,
-.profile-container {
-	display: none;
-}
-
-#menu-options {
-	float: right;
+#profile-picture {
+  margin-top: 8px;
 }
